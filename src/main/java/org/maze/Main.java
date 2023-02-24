@@ -1,25 +1,14 @@
 package org.maze;
 
-import org.maze.background.Background;
+import org.maze.levels.LevelOne;
 
-import java.nio.file.spi.FileSystemProvider;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Background bg = new Background();
+        LevelOne levelOne = new LevelOne();
+        PlayGame playGame = new PlayGame();
 
-
-//        myLocalVariable = Background;
-//        System.out.println(bg);
-//        System.out.println(bg.getBgString());
-
-        System.out.println(bg.printSquare());
-
-//        bg.printSquare();
-
-
-//        System.out.println(bg.getBgSquare());
+        System.out.println(playGame.printSquare(levelOne.getLevelOneMaze()));
 
 
 
