@@ -1,6 +1,9 @@
 package org.maze;
 
 import org.maze.levels.LevelOne;
+import org.maze.playgame.PlayGame;
+
+import java.util.Scanner;
 
 
 public class Main {
@@ -8,7 +11,10 @@ public class Main {
         LevelOne levelOne = new LevelOne();
         PlayGame playGame = new PlayGame();
 
-        System.out.println(playGame.printSquare(levelOne.getLevelOneMaze()));
+
+        System.out.println(playGame.levelStarter(levelOne.getLevelOneMaze()));
+
+
 
 
 
