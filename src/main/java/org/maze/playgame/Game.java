@@ -8,7 +8,6 @@ public class Game {
     int userPositionRow;
     int userPositionColumn;
     Scanner input = new Scanner(System.in);
-//    static Scanner input = new Scanner(System.in);
 
     public String[][] loadLevel(String[][] level) {
         this.gameMap = level;
@@ -57,7 +56,8 @@ public class Game {
     }
 
     public void gameLoop(){
-
+//        System.out.print("\033[H\033[2J");
+//        System.out.flush();
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println(printSquare(gameMap));
         boolean shouldContinue = getUserInput();
