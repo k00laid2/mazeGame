@@ -7,76 +7,62 @@ public class Game {
     public String[][] gameMap;
     int userPositionRow;
     int userPositionColumn;
+    String errorMessage;
     Scanner input = new Scanner(System.in);
 
     public String[][] loadLevel(String[][] level) {
         this.gameMap = level;
         this.userPositionRow = 0;
         this.userPositionColumn = 0;
+        this.errorMessage = null;
         return this.gameMap;
     }
 
+    public boolean isValidMove(int nextRow, int nextColumn){
+        if (nextRow < 0 || nextColumn < 0 || nextRow > gameMap.length-1 || nextColumn > gameMap[nextRow].length-1) {
+            errorMessage = "WOA DON'T FALL OFF THE MAP.";
+            return false;
+        }
+        if ((gameMap[nextRow][nextColumn]) == "-" || (gameMap[nextRow][nextColumn]) == "|") {
+            errorMessage = "THAT'S A WALL, MOVE A DIFFERENT DIRECTION";
+            return false;
+        }
+        if ((gameMap[nextRow][nextColumn]) == "$") {
+            errorMessage = "THE END OF THE MAP! GOOD JOB DUDE!";
+            return false;
+        }
+        userPositionRow = nextRow;
+        userPositionColumn = nextColumn;
+        return true;
+    }
 
     public boolean getUserInput(){
-        if (gameMap[9][8] != "X"){
-            gameMap[userPositionRow][userPositionColumn] = "O";
-
-            System.out.println("\n W\nASD\nMove Through the Maze!");
-            String searchTerm = input.nextLine();
-
+        errorMessage = null;
+        gameMap[userPositionRow][userPositionColumn] = "O";
+        System.out.println("\n W\nASD\nMove Through the Maze!");
+        String searchTerm = input.nextLine();
             switch (searchTerm.toUpperCase()) {
                 case "W":
-                    if (userPositionRow == 0){
-                        break;
-                    }
-                    if ((gameMap[userPositionRow-1][userPositionColumn]) == "-") {
-                        break;
-                    }
-                    if ((gameMap[userPositionRow-1][userPositionColumn]) == "|") {
-                        break;
-                    }
-                    userPositionRow = userPositionRow - 1;
+                    isValidMove(userPositionRow-1, userPositionColumn);
                     break;
                 case "A":
-                    if (userPositionColumn == 0){
-                        break;
-                    }
-                    if ((gameMap[userPositionRow][userPositionColumn-1]) == "-") {
-                        break;
-                    }
-                    if ((gameMap[userPositionRow][userPositionColumn-1]) == "|") {
-                        break;
-                    }
-                    userPositionColumn = userPositionColumn - 1;
+                    isValidMove(userPositionRow, userPositionColumn-1);
                     break;
                 case "S":
-                    if (userPositionRow == 9){
-                        break;
-                    }
-                    if ((gameMap[userPositionRow+1][userPositionColumn]) == "-") {
-                        break;
-                    }
-                    if ((gameMap[userPositionRow+1][userPositionColumn]) == "|") {
-                        break;
-                    }
-                    userPositionRow = userPositionRow + 1;
+                    isValidMove(userPositionRow+1, userPositionColumn);
                     break;
                 case "D":
-                    if (userPositionColumn == 9){
-                        break;
-                    }
-                    if ((gameMap[userPositionRow][userPositionColumn+1]) == "-") {
-                        break;
-                    }
-                    if ((gameMap[userPositionRow][userPositionColumn+1]) == "|") {
-                        break;
-                    }
-                    userPositionColumn = userPositionColumn + 1;
+                    isValidMove(userPositionRow, userPositionColumn+1);
+                    break;
+                case "K":
+                    isValidMove(userPositionRow+2, userPositionColumn+1);
+                    break;
+                case "E":
+                    isValidMove(userPositionRow-1, userPositionColumn-1);
                     break;
             }
             gameMap[userPositionRow][userPositionColumn] = "X";
-        }
-        return true;
+            return true;
     }
 
     public String printSquare(String[][] level) {
@@ -85,6 +71,9 @@ public class Game {
 
             for (int i = 0; i < level.length; i++) {
                 collector = collector + (Arrays.toString(level[i])) + "\n";
+            }
+            if (errorMessage != null){
+                collector = collector + errorMessage + "\n";
             }
             return collector;
         } catch (Exception e) {
@@ -95,8 +84,7 @@ public class Game {
     }
 
     public void gameLoop(){
-//        System.out.print("\033[H\033[2J");
-//        System.out.flush();
+
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println(printSquare(gameMap));
         boolean shouldContinue = getUserInput();

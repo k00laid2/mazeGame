@@ -1,6 +1,7 @@
 package org.maze;
 
 import org.maze.levels.LevelOne;
+import org.maze.levels.LevelTwo;
 import org.maze.playgame.Game;
 
 // first. create a class that will hold a 'level design' which is simply a 2d array
@@ -15,7 +16,6 @@ import org.maze.playgame.Game;
 //
 // todo: more conditionals for maze walls, boundaries, etc.
 // complete.
-// todo: put the 'end of level' conditional inside the level itself instead of the get user input method. 
 // todo: try catch
 
 
@@ -23,9 +23,11 @@ public class Main {
     public static void main(String[] args) {
 
         LevelOne levelOne = new LevelOne();
+        LevelTwo levelTwo = new LevelTwo();
         Game game = new Game();
 
-        game.loadLevel(levelOne.getLevelOneMaze());
+//        game.loadLevel(levelOne.getLevelOneMaze());
+        game.loadLevel(levelTwo.getLevelOneMaze());
         game.gameLoop();
 
     }
