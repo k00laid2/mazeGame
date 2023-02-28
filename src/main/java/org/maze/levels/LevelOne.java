@@ -23,8 +23,4 @@ public class LevelOne {
     public String[][] getLevelOneMaze() {
         return levelOneMaze;
     }
-    public void setLevelOneMaze(String[][] levelOneMaze) {
-        this.levelOneMaze = levelOneMaze;
-    }
-
 }

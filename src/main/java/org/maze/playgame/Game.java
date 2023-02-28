@@ -16,22 +16,61 @@ public class Game {
         return this.gameMap;
     }
 
+
     public boolean getUserInput(){
-        if (gameMap[9][0] != "X"){
+        if (gameMap[9][8] != "X"){
+            gameMap[userPositionRow][userPositionColumn] = "O";
+
             System.out.println("\n W\nASD\nMove Through the Maze!");
             String searchTerm = input.nextLine();
+
             switch (searchTerm.toUpperCase()) {
                 case "W":
-                    // if input is W, then we increase row, and change the level[][]
+                    if (userPositionRow == 0){
+                        break;
+                    }
+                    if ((gameMap[userPositionRow-1][userPositionColumn]) == "-") {
+                        break;
+                    }
+                    if ((gameMap[userPositionRow-1][userPositionColumn]) == "|") {
+                        break;
+                    }
                     userPositionRow = userPositionRow - 1;
                     break;
                 case "A":
+                    if (userPositionColumn == 0){
+                        break;
+                    }
+                    if ((gameMap[userPositionRow][userPositionColumn-1]) == "-") {
+                        break;
+                    }
+                    if ((gameMap[userPositionRow][userPositionColumn-1]) == "|") {
+                        break;
+                    }
                     userPositionColumn = userPositionColumn - 1;
                     break;
                 case "S":
+                    if (userPositionRow == 9){
+                        break;
+                    }
+                    if ((gameMap[userPositionRow+1][userPositionColumn]) == "-") {
+                        break;
+                    }
+                    if ((gameMap[userPositionRow+1][userPositionColumn]) == "|") {
+                        break;
+                    }
                     userPositionRow = userPositionRow + 1;
                     break;
                 case "D":
+                    if (userPositionColumn == 9){
+                        break;
+                    }
+                    if ((gameMap[userPositionRow][userPositionColumn+1]) == "-") {
+                        break;
+                    }
+                    if ((gameMap[userPositionRow][userPositionColumn+1]) == "|") {
+                        break;
+                    }
                     userPositionColumn = userPositionColumn + 1;
                     break;
             }
@@ -43,7 +82,7 @@ public class Game {
     public String printSquare(String[][] level) {
         try {
             String collector = "";
-            // had an example of the printStackTrace. i <= bg
+
             for (int i = 0; i < level.length; i++) {
                 collector = collector + (Arrays.toString(level[i])) + "\n";
             }

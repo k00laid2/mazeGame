@@ -14,6 +14,8 @@ import org.maze.playgame.Game;
 // it just loops through the 2 tools, getUserInput and printSquare.
 //
 // todo: more conditionals for maze walls, boundaries, etc.
+// complete.
+// todo: put the 'end of level' conditional inside the level itself instead of the get user input method. 
 // todo: try catch
 
 
@@ -28,3 +30,4 @@ public class Main {
 
     }
 }
+
